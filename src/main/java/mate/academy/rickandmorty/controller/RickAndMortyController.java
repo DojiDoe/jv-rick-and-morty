@@ -1,23 +1,21 @@
 package mate.academy.rickandmorty.controller;
 
-import mate.academy.rickandmorty.dto.internal.RickAndMortyWikiDto;
-import mate.academy.rickandmorty.service.RickAndMortyServiceImpl;
+import lombok.RequiredArgsConstructor;
+import mate.academy.rickandmorty.dto.internal.CharacterWikiDto;
+import mate.academy.rickandmorty.service.RickAndMortyService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rick_and_morty")
+@RequiredArgsConstructor
+@RequestMapping("/characters")
 public class RickAndMortyController {
 
-    private final RickAndMortyServiceImpl service;
-
-    public RickAndMortyController(RickAndMortyServiceImpl service) {
-        this.service = service;
-    }
+    private final RickAndMortyService service;
 
     @GetMapping("/random")
-    public RickAndMortyWikiDto testRickAndMorty() {
+    public CharacterWikiDto testRickAndMorty() {
         return service.getRandomCharacter();
     }
 }

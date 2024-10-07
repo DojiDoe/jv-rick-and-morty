@@ -1,26 +1,26 @@
-package mate.academy.rickandmorty.configuration;
+package mate.academy.rickandmorty;
 
 import java.util.List;
-import mate.academy.rickandmorty.dto.external.RickAndMortyApiResultDto;
-import mate.academy.rickandmorty.service.RickAndMortyApiServiceImpl;
+import mate.academy.rickandmorty.dto.external.CharacterResultDto;
+import mate.academy.rickandmorty.service.CharacterClient;
 import mate.academy.rickandmorty.service.RickAndMortyService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
-    private final RickAndMortyApiServiceImpl rickAndMortyApiService;
+    private final CharacterClient characterClient;
     private final RickAndMortyService rickAndMortyService;
 
-    public CommandLineRunnerImpl(RickAndMortyApiServiceImpl rickAndMortyApiService,
+    public CommandLineRunnerImpl(CharacterClient characterClient,
                                  RickAndMortyService rickAndMortyService) {
-        this.rickAndMortyApiService = rickAndMortyApiService;
+        this.characterClient = characterClient;
         this.rickAndMortyService = rickAndMortyService;
     }
 
     @Override
     public void run(String... args) {
-        List<RickAndMortyApiResultDto> allCharacters = rickAndMortyApiService.getAllCharacters();
+        List<CharacterResultDto> allCharacters = characterClient.getAllCharacters();
         rickAndMortyService.saveAll(allCharacters);
     }
 }

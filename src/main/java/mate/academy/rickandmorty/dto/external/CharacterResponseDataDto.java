@@ -5,9 +5,9 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class RickAndMortyApiResponseDataDto {
+public class CharacterResponseDataDto {
     @JsonProperty("info")
-    private RickAndMortyApiInfoDto rickAndMortyApiInfoDto;
+    private CharacterInfoDto characterInfoDto;
     @JsonProperty("results")
-    private List<RickAndMortyApiResultDto> rickAndMortyApiResultDto;
+    private List<CharacterResultDto> characterResultDto;
 }

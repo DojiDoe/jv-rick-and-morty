@@ -3,8 +3,8 @@ package mate.academy.rickandmorty.service;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.rickandmorty.dto.external.RickAndMortyApiResultDto;
-import mate.academy.rickandmorty.dto.internal.RickAndMortyWikiDto;
+import mate.academy.rickandmorty.dto.external.CharacterResultDto;
+import mate.academy.rickandmorty.dto.internal.CharacterWikiDto;
 import mate.academy.rickandmorty.mapper.RickAndMortyCharacterMapper;
 import mate.academy.rickandmorty.model.RickAndMortyCharacter;
 import mate.academy.rickandmorty.repository.CharacterRepository;
@@ -19,23 +19,15 @@ public class RickAndMortyServiceImpl implements RickAndMortyService {
     private final RickAndMortyCharacterMapper characterMapper;
 
     @Override
-    public RickAndMortyCharacter save(RickAndMortyApiResultDto rickAndMortyApiResultDto) {
-        RickAndMortyCharacter rickAndMortyCharacter = characterMapper
-                .toModel(rickAndMortyApiResultDto);
-        return characterRepository.save(rickAndMortyCharacter);
-    }
-
-    @Override
-    public List<RickAndMortyCharacter> saveAll(List<RickAndMortyApiResultDto> resultDtoList) {
+    public List<RickAndMortyCharacter> saveAll(List<CharacterResultDto> resultDtoList) {
         List<RickAndMortyCharacter> rickAndMortyCharacterList = new ArrayList<>();
-        for (RickAndMortyApiResultDto resultDto : resultDtoList) {
-            rickAndMortyCharacterList.add(characterMapper.toModel(resultDto));
-        }
+        resultDtoList.forEach(rs -> rickAndMortyCharacterList
+                .add(characterMapper.toModel(rs)));
         return characterRepository.saveAll(rickAndMortyCharacterList);
     }
 
     @Override
-    public RickAndMortyWikiDto getRandomCharacter() {
+    public CharacterWikiDto getRandomCharacter() {
         return characterMapper.toDto(characterRepository.getRandomCharacter());
     }
 }

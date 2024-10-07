@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class RickAndMortyApiResultDto {
+public class CharacterResultDto {
     private Long id;
     private String name;
     private String status;
@@ -14,9 +14,9 @@ public class RickAndMortyApiResultDto {
     private String type;
     private String gender;
     @JsonProperty("origin")
-    private RickAndMortyApiOriginDto rickAndMortyApiOriginDto;
+    private CharacterOriginDto characterOriginDto;
     @JsonProperty("location")
-    private RickAndMortyApiLocationDto rickAndMortyApiLocationDto;
+    private CharacterLocationDto characterLocationDto;
     private String image;
     private List<String> episode;
     private String url;
